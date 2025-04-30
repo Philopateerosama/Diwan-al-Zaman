@@ -6,6 +6,7 @@
     <title>ديوان الزمان - موسوعة الشعر العربي</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="fonts/combined-fonts.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <header>
@@ -16,6 +17,25 @@
                 <span class="slider"></span>
                 <span class="switch-icon" id="theme-icon" style="font-size:1.1rem;margin-right:6px;vertical-align:middle;">🌙</span>
             </label>
+        </div>
+        <div class="music-controls">
+            <button id="music-toggle" class="music-toggle-btn" title="الموسيقى">
+                <i class="fas fa-music"></i>
+            </button>
+            <div class="music-panel">
+                <select id="music-select" class="music-select">
+                    <option value="">اختر موسيقى</option>
+                    <option value="music/background1.mp3">موسيقى 1</option>
+                    <option value="music/background2.mp3">موسيقى 2</option>
+                    <option value="music/background3.mp3">موسيقى 3</option>
+                </select>
+                <button id="play-pause" class="music-btn" title="تشغيل/إيقاف">
+                    <i class="fas fa-play"></i>
+                </button>
+                <button id="mute" class="music-btn" title="كتم/إلغاء الكتم">
+                    <i class="fas fa-volume-up"></i>
+                </button>
+            </div>
         </div>
         <nav>
             <ul>
@@ -85,6 +105,30 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            const quotes = [
+                {
+                    text: "على هذه الأرض ما يستحق الحياة: تردد إبريل، رائحة الخبز عند الفجر، آراء امرأة في الرجال، كتابات أسخيليوس، أول الحب، عشب على حجر، أمهات تقف على خيط ناي، وخوف الغزاة من الذكريات.",
+                    author: "محمود درويش"
+                },
+                {
+                    text: "أحبكِ لأنكِ أنتِ، لا لأنكِ جميلة، ولا لأنكِ طيبة، ولا لأنكِ حلوة، ولا لأنكِ ذكية، أحبكِ لأنكِ أنتِ.",
+                    author: "نزار قباني"
+                },
+                {
+                    text: "وما نيل المطالب بالتمني ولكن تؤخذ الدنيا غلابا",
+                    author: "أحمد شوقي"
+                }
+            ];
+
+            function displayRandomQuote() {
+                const randomIndex = Math.floor(Math.random() * quotes.length);
+                const quote = quotes[randomIndex];
+                document.getElementById('random-quote').textContent = quote.text;
+                document.getElementById('random-quote-author').textContent = quote.author;
+            }
+
+            displayRandomQuote();
+
             const toggleInput = document.getElementById('dark-mode-toggle');
             const html = document.documentElement;
             const icon = document.getElementById('theme-icon');
@@ -103,6 +147,66 @@
                     localStorage.setItem('theme', 'light');
                     icon.textContent = '🌙';
                 }
+            });
+
+            const audio = new Audio();
+            const musicSelect = document.getElementById('music-select');
+            const playPauseBtn = document.getElementById('play-pause');
+            const muteBtn = document.getElementById('mute');
+            const musicToggle = document.getElementById('music-toggle');
+            const musicPanel = document.querySelector('.music-panel');
+            let isPlaying = false;
+            let isMuted = false;
+            let isPanelOpen = false;
+
+            musicToggle.addEventListener('click', function() {
+                isPanelOpen = !isPanelOpen;
+                musicPanel.style.display = isPanelOpen ? 'flex' : 'none';
+                musicPanel.style.opacity = isPanelOpen ? '1' : '0';
+                musicPanel.style.transform = isPanelOpen ? 'translateY(0)' : 'translateY(-20px)';
+            });
+
+            const savedMusic = localStorage.getItem('selectedMusic');
+            if (savedMusic) {
+                musicSelect.value = savedMusic;
+                audio.src = savedMusic;
+            }
+
+            musicSelect.addEventListener('change', function() {
+                audio.src = this.value;
+                localStorage.setItem('selectedMusic', this.value);
+                if (isPlaying) {
+                    audio.play();
+                }
+            });
+
+            playPauseBtn.addEventListener('click', function() {
+                if (audio.src) {
+                    if (isPlaying) {
+                        audio.pause();
+                        this.innerHTML = '<i class="fas fa-play"></i>';
+                    } else {
+                        audio.play();
+                        this.innerHTML = '<i class="fas fa-pause"></i>';
+                    }
+                    isPlaying = !isPlaying;
+                }
+            });
+
+            muteBtn.addEventListener('click', function() {
+                if (isMuted) {
+                    audio.muted = false;
+                    this.innerHTML = '<i class="fas fa-volume-up"></i>';
+                } else {
+                    audio.muted = true;
+                    this.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                }
+                isMuted = !isMuted;
+            });
+
+            audio.addEventListener('ended', function() {
+                audio.currentTime = 0;
+                audio.play();
             });
         });
     </script>

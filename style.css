@@ -1,25 +1,17 @@
-/* Main CSS file for Diwan Al-Zaman website */
-
-/* Google Fonts are now loaded locally via combined-fonts.css */
-
-/* Global Variables */
 :root {
-    /* New Color Palette - Rich and Elegant */
-    --primary-dark: #4A3933;    /* Deep brown for text and headers */
-    --primary-medium: #8C7A6B;  /* Medium brown for backgrounds */
-    --primary-light: #E6DED5;   /* Light beige for backgrounds */
-    --accent-gold: #D4AF37;     /* Rich gold for accents and buttons */
-    --accent-maroon: #8B0000;   /* Deep maroon for highlights */
-    --text-dark: #2D2522;       /* Almost black for main text */
-    --text-light: #F8F5F1;      /* Off-white for text on dark backgrounds */
+    --primary-dark: #4A3933;
+    --primary-medium: #8C7A6B;
+    --primary-light: #E6DED5;
+    --accent-gold: #D4AF37;
+    --accent-maroon: #8B0000;
+    --text-dark: #2D2522;
+    --text-light: #F8F5F1;
     --shadow-color: rgba(0, 0, 0, 0.15);
     
-    /* Improved Font Selection */
     --header-font: 'Aref Ruqaa', serif;
     --body-font: 'Tajawal', sans-serif;
     --quote-font: 'Reem Kufi', serif;
     
-    /* Spacing Variables */
     --spacing-xs: 0.25rem;
     --spacing-sm: 0.5rem;
     --spacing-md: 1rem;
@@ -27,21 +19,18 @@
     --spacing-xl: 2rem;
     --spacing-xxl: 3rem;
     
-    /* Border Radius */
     --radius-sm: 4px;
     --radius-md: 8px;
     --radius-lg: 12px;
     --transition-theme: background 0.4s, color 0.4s;
 }
 
-/* Global Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Base Styles */
 html {
     scroll-behavior: smooth;
     font-size: 16px;
@@ -95,7 +84,6 @@ a:hover {
     text-decoration: underline;
 }
 
-/* Button Styles */
 .btn {
     display: inline-block;
     background-color: var(--accent-gold);
@@ -133,7 +121,6 @@ a:hover {
     background-color: var(--primary-dark);
 }
 
-/* Layout Components */
 header {
     background-color: var(--primary-dark);
     padding: var(--spacing-lg) var(--spacing-md);
@@ -216,7 +203,6 @@ footer a:hover {
     color: var(--text-light);
 }
 
-/* Home Page Styles */
 .hero {
     text-align: center;
     padding: var(--spacing-xxl) var(--spacing-md);
@@ -272,7 +258,6 @@ footer a:hover {
     margin: var(--spacing-sm) auto 0;
 }
 
-/* Poet Selection Page Styles */
 .search-section {
     background-color: var(--primary-light);
     padding: var(--spacing-lg);
@@ -386,7 +371,6 @@ footer a:hover {
     text-align: center;
 }
 
-/* Poet Details Page Styles */
 .poet-details-page {
     display: flex;
     gap: 2rem;
@@ -500,7 +484,6 @@ footer a:hover {
     to { opacity: 1; }
 }
 
-/* Quotes Section */
 .quotes-categories {
     display: flex;
     flex-wrap: wrap;
@@ -573,7 +556,6 @@ footer a:hover {
     margin-top: var(--spacing-sm);
 }
 
-/* Poems Section */
 .poems-container {
     display: flex;
     gap: var(--spacing-xl);
@@ -681,7 +663,6 @@ footer a:hover {
     font-family: var(--quote-font);
 }
 
-/* Responsive Design */
 @media (max-width: 992px) {
     html {
         font-size: 15px;
@@ -777,7 +758,6 @@ footer a:hover {
     }
 }
 
-/* Animation Effects */
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -802,7 +782,6 @@ footer a:hover {
     animation: slideInUp 0.8s ease;
 }
 
-/* Additional Decorative Elements */
 .decorative-divider {
     height: 3px;
     background: linear-gradient(to right, transparent, var(--accent-gold), transparent);
@@ -826,7 +805,6 @@ footer a:hover {
     background-color: var(--accent-gold);
 }
 
-/* Print Styles */
 @media print {
     body {
         background: none;
@@ -852,7 +830,6 @@ footer a:hover {
     }
 }
 
-/* Poet Details Tabs & Category Tabs */
 .tab-button {
     background-color: var(--primary-light);
     border: 2px solid var(--primary-medium);
@@ -908,7 +885,6 @@ footer a:hover {
     margin-bottom: var(--spacing-xl);
 }
 
-/* Poem Items and Content */
 .poem-item {
     padding: var(--spacing-sm) var(--spacing-md);
     cursor: pointer;
@@ -988,4 +964,123 @@ footer a:hover {
 }
 .copy-btn:active, .share-btn:active, .copy-poem-btn:active, .share-poem-btn:active {
     transform: scale(0.95);
+}
+
+.theme-switch {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+}
+.theme-switch .slider {
+    width: 32px;
+    height: 18px;
+    background: var(--primary-medium);
+    border-radius: 12px;
+    position: relative;
+    transition: background 0.3s;
+    margin-left: 6px;
+    margin-right: 2px;
+    display: inline-block;
+}
+.theme-switch input:checked + .slider {
+    background: var(--accent-gold);
+}
+.theme-switch .slider::before {
+    content: '';
+    position: absolute;
+    right: 3px;
+    top: 2px;
+    width: 14px;
+    height: 14px;
+    background: #fff;
+    border-radius: 50%;
+    transition: 0.3s;
+    box-shadow: 0 1px 4px var(--shadow-color);
+}
+.theme-switch input:checked + .slider::before {
+    right: 15px;
+    background: var(--primary-dark);
+}
+.theme-switch .switch-icon {
+    margin-left: 2px;
+    margin-right: 2px;
+    font-size: 1.1rem;
+    vertical-align: middle;
+}
+
+[data-theme="dark"] .hero,
+[data-theme="dark"] .hero-content {
+    background: #23211e !important;
+    color: var(--text-dark) !important;
+}
+[data-theme="dark"] .hero h2,
+[data-theme="dark"] .hero p,
+[data-theme="dark"] .hero .cta-button {
+    color: var(--text-dark) !important;
+}
+[data-theme="dark"] .hero .cta-button {
+    background: var(--accent-gold) !important;
+    border: none;
+}
+
+[data-theme="dark"] .quote-card {
+    background-color: var(--primary-medium) !important;
+    color: var(--text-dark) !important;
+}
+[data-theme="dark"] .quote-text {
+    color: var(--text-dark) !important;
+}
+[data-theme="dark"] .quote-card::before {
+    color: var(--accent-gold) !important;
+}
+
+[data-theme="dark"] .poet-card {
+    background-color: #23211e !important;
+    color: #fff !important;
+}
+[data-theme="dark"] .poet-card h3,
+[data-theme="dark"] .poet-card p {
+    color: #fff !important;
+}
+
+[data-theme="dark"] .poet-card,
+[data-theme="dark"] .quote-card,
+[data-theme="dark"] .poet-info-card,
+[data-theme="dark"] .poet-profile,
+[data-theme="dark"] .poem-content,
+[data-theme="dark"] .poems-list,
+[data-theme="dark"] .quotes-container,
+[data-theme="dark"] .category-tab,
+[data-theme="dark"] .tab-pane,
+[data-theme="dark"] .search-section,
+[data-theme="dark"] .filter-container,
+[data-theme="dark"] .poet-header,
+[data-theme="dark"] .poet-info,
+[data-theme="dark"] .poet-navigation,
+[data-theme="dark"] .tab-btn,
+[data-theme="dark"] .category-btn,
+[data-theme="dark"] .quote-topic {
+    background-color: #23211e !important;
+    color: #fff !important;
+}
+[data-theme="dark"] .poet-card h3,
+[data-theme="dark"] .poet-card p,
+[data-theme="dark"] .quote-card *,
+[data-theme="dark"] .poet-info-card *,
+[data-theme="dark"] .poet-profile *,
+[data-theme="dark"] .poem-content *,
+[data-theme="dark"] .poems-list *,
+[data-theme="dark"] .quotes-container *,
+[data-theme="dark"] .category-tab *,
+[data-theme="dark"] .tab-pane *,
+[data-theme="dark"] .search-section *,
+[data-theme="dark"] .filter-container *,
+[data-theme="dark"] .poet-header *,
+[data-theme="dark"] .poet-info *,
+[data-theme="dark"] .poet-navigation *,
+[data-theme="dark"] .tab-btn *,
+[data-theme="dark"] .category-btn *,
+[data-theme="dark"] .quote-topic * {
+    color: #fff !important;
 }

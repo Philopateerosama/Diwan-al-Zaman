@@ -14,9 +14,15 @@
             <ul>
                 <li><a href="index.html">الرئيسية</a></li>
                 <li><a href="poet-selection.html" class="active">الشعراء</a></li>
-                <!-- Add other navigation links if needed -->
             </ul>
         </nav>
+        <div style="position:absolute;left:1.5rem;top:1.5rem;z-index:1000;">
+            <label class="theme-switch" title="تبديل الوضع الليلي">
+                <input type="checkbox" id="dark-mode-toggle" style="display:none;">
+                <span class="slider"></span>
+                <span class="switch-icon" id="theme-icon" style="font-size:1.1rem;margin-right:6px;vertical-align:middle;">🌙</span>
+            </label>
+        </div>
     </header>
 
     <main class="poet-selection-page">
@@ -58,5 +64,28 @@
     <footer>
         <p>&copy; 2025 ديوان الزمان. جميع الحقوق محفوظة.</p>
     </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleInput = document.getElementById('dark-mode-toggle');
+            const html = document.documentElement;
+            const icon = document.getElementById('theme-icon');
+            if (localStorage.getItem('theme') === 'dark') {
+                html.setAttribute('data-theme', 'dark');
+                toggleInput.checked = true;
+                icon.textContent = '☀️';
+            }
+            toggleInput.addEventListener('change', function() {
+                if (toggleInput.checked) {
+                    html.setAttribute('data-theme', 'dark');
+                    localStorage.setItem('theme', 'dark');
+                    icon.textContent = '☀️';
+                } else {
+                    html.removeAttribute('data-theme');
+                    localStorage.setItem('theme', 'light');
+                    icon.textContent = '🌙';
+                }
+            });
+        });
+    </script>
 </body>
 </html>

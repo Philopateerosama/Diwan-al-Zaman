@@ -10,13 +10,18 @@
 <body>
     <header>
         <h1><a href="index.html">ديوان الزمان</a></h1>
-        <button id="dark-mode-toggle" style="position:absolute;left:2rem;top:2rem;font-size:1.2rem;padding:0.5em 1em;border-radius:8px;border:none;cursor:pointer;background:var(--primary-medium);color:var(--text-light);z-index:1000;">🌙 الوضع الليلي</button>
+        <div style="position:absolute;left:1.5rem;top:1.5rem;z-index:1000;">
+            <label class="theme-switch" title="تبديل الوضع الليلي">
+                <input type="checkbox" id="dark-mode-toggle" style="display:none;">
+                <span class="slider"></span>
+                <span class="switch-icon" id="theme-icon" style="font-size:1.1rem;margin-right:6px;vertical-align:middle;">🌙</span>
+            </label>
+        </div>
         <nav>
             <ul>
                 <li><a href="index.html" class="active">الرئيسية</a></li>
                 <li><a href="poet-selection.html">الشعراء</a></li>
                 <li><a href="about.html">عن الموقع</a></li>
-                <!-- Add other navigation links if needed -->
             </ul>
         </nav>
     </header>
@@ -79,43 +84,26 @@
     </footer>
 
     <script>
-        // Simple script to randomize the quote of the day
         document.addEventListener('DOMContentLoaded', function() {
-            const quotes = [
-                { text: "على هذه الأرض ما يستحق الحياة: تردد إبريل، رائحة الخبز عند الفجر، آراء امرأة في الرجال، كتابات أسخيليوس، أول الحب، عشب على حجر، أمهات تقف على خيط ناي، وخوف الغزاة من الذكريات.", author: "محمود درويش" },
-                { text: "أنا لا أحبك كما يحب الناس، أنا أحبك كما تحب الأشجار المطر.", author: "محمود درويش" },
-                { text: "الحزن يحفر التجاعيد على بشرة المرأة فتذهب إلى أخصائي في فن التجميل، بينما الحزن يحفر التجاعيد على قلب الرجل فيخسر عشر سنوات من عمره.", author: "نزار قباني" },
-                { text: "لو أنني أقول للبحر ما اشعر به نحوك لترك شواطئه و أصدافه و أسماكه و تبعني!", author: "نزار قباني" },
-                { text: "وطني لو شُغِلْتُ بالخلد عنه ... نازعتني إليه في الخلد نفسي.", author: "أحمد شوقي" },
-                { text: "وما الحب إلا للحبيب الأول، نقل فؤادك حيث شئت من الهوى.", author: "أحمد شوقي" }
-            ];
-            
-            const randomIndex = Math.floor(Math.random() * quotes.length);
-            document.getElementById('random-quote').textContent = quotes[randomIndex].text;
-            document.getElementById('random-quote-author').textContent = quotes[randomIndex].author;
-
-            // Dark mode toggle
-            const toggleBtn = document.getElementById('dark-mode-toggle');
+            const toggleInput = document.getElementById('dark-mode-toggle');
             const html = document.documentElement;
-            // Load preference
+            const icon = document.getElementById('theme-icon');
             if (localStorage.getItem('theme') === 'dark') {
                 html.setAttribute('data-theme', 'dark');
+                toggleInput.checked = true;
+                icon.textContent = '☀️';
             }
-            toggleBtn.addEventListener('click', function() {
-                if (html.getAttribute('data-theme') === 'dark') {
-                    html.removeAttribute('data-theme');
-                    localStorage.setItem('theme', 'light');
-                    toggleBtn.textContent = '🌙 الوضع الليلي';
-                } else {
+            toggleInput.addEventListener('change', function() {
+                if (toggleInput.checked) {
                     html.setAttribute('data-theme', 'dark');
                     localStorage.setItem('theme', 'dark');
-                    toggleBtn.textContent = '☀️ الوضع النهاري';
+                    icon.textContent = '☀️';
+                } else {
+                    html.removeAttribute('data-theme');
+                    localStorage.setItem('theme', 'light');
+                    icon.textContent = '🌙';
                 }
             });
-            // Set button text on load
-            if (html.getAttribute('data-theme') === 'dark') {
-                toggleBtn.textContent = '☀️ الوضع النهاري';
-            }
         });
     </script>
 </body>

@@ -11,13 +11,18 @@
     <header>
         <h1><a href="index.html">ديوان الزمان</a></h1>
         <div id="poet-name" style="text-align:center;font-size:1.5em;margin:10px 0;"></div>
-        <button id="dark-mode-toggle" style="position:absolute;left:2rem;top:2rem;font-size:1.2rem;padding:0.5em 1em;border-radius:8px;border:none;cursor:pointer;background:var(--primary-medium);color:var(--text-light);z-index:1000;">🌙 الوضع الليلي</button>
+        <div style="position:absolute;left:1.5rem;top:1.5rem;z-index:1000;">
+            <label class="theme-switch" title="تبديل الوضع الليلي">
+                <input type="checkbox" id="dark-mode-toggle" style="display:none;">
+                <span class="slider"></span>
+                <span class="switch-icon" id="theme-icon" style="font-size:1.1rem;margin-right:6px;vertical-align:middle;">🌙</span>
+            </label>
+        </div>
         <nav>
             <ul>
                 <li><a href="index.html">الرئيسية</a></li>
                 <li><a href="poet-selection.html">الشعراء</a></li>
                 <li><a href="about.html">عن الموقع</a></li>
-                <!-- Add other navigation links if needed -->
             </ul>
         </nav>
     </header>
@@ -25,17 +30,14 @@
     <main class="poet-details-page" style="display:flex;gap:2rem;align-items:flex-start;">
         <aside class="poet-info-card">
             <div id="poet-info">
-                <!-- Poet image and bio will be loaded here by JavaScript -->
                 <div class="loading-placeholder">جاري تحميل بيانات الشاعر...</div>
             </div>
         </aside>
         <section class="poet-main-content" style="flex:1;">
             <div id="poet-content">
                 <div id="tabs" class="tabs-container">
-                    <!-- Tabs (Quotes/Poems) will be loaded here -->
                 </div>
                 <div id="tab-content" class="tab-content-container">
-                    <!-- Content for selected tab (Quotes categories or Poems list/content) will be loaded here -->
                 </div>
             </div>
         </section>
@@ -48,26 +50,25 @@
     <script src="js/poet-details.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Dark mode toggle
-            const toggleBtn = document.getElementById('dark-mode-toggle');
+            const toggleInput = document.getElementById('dark-mode-toggle');
             const html = document.documentElement;
+            const icon = document.getElementById('theme-icon');
             if (localStorage.getItem('theme') === 'dark') {
                 html.setAttribute('data-theme', 'dark');
+                toggleInput.checked = true;
+                icon.textContent = '☀️';
             }
-            toggleBtn.addEventListener('click', function() {
-                if (html.getAttribute('data-theme') === 'dark') {
-                    html.removeAttribute('data-theme');
-                    localStorage.setItem('theme', 'light');
-                    toggleBtn.textContent = '🌙 الوضع الليلي';
-                } else {
+            toggleInput.addEventListener('change', function() {
+                if (toggleInput.checked) {
                     html.setAttribute('data-theme', 'dark');
                     localStorage.setItem('theme', 'dark');
-                    toggleBtn.textContent = '☀️ الوضع النهاري';
+                    icon.textContent = '☀️';
+                } else {
+                    html.removeAttribute('data-theme');
+                    localStorage.setItem('theme', 'light');
+                    icon.textContent = '🌙';
                 }
             });
-            if (html.getAttribute('data-theme') === 'dark') {
-                toggleBtn.textContent = '☀️ الوضع النهاري';
-            }
         });
     </script>
 </body>

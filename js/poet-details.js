@@ -1,7 +1,5 @@
 // Main JavaScript file for poet details page
-
 document.addEventListener('DOMContentLoaded', function() {
-    // Get poet name from URL parameter
     const urlParams = new URLSearchParams(window.location.search);
     const poetName = urlParams.get('poet');
     
@@ -10,7 +8,6 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
     
-    // Load poet data
     fetch(`data/${poetName}.json`)
         .then(response => {
             if (!response.ok) {
@@ -36,10 +33,8 @@ document.addEventListener('DOMContentLoaded', function() {
 function displayPoetInfo(poet) {
     document.title = `ديوان الزمان - ${poet.name}`;
     
-    // Update header
     document.getElementById('poet-name').textContent = poet.name;
     
-    // Update poet image and bio
     const poetInfoHTML = `
         <div class="poet-header">
             <div class="poet-image">
@@ -59,7 +54,6 @@ function setupTabs(poet) {
     const tabsContainer = document.getElementById('tabs');
     const contentContainer = document.getElementById('tab-content');
     
-    // Create tabs
     const tabsHTML = `
         <button class="tab-button active" data-tab="quotes">اقتباسات</button>
         <button class="tab-button" data-tab="poems">قصائد</button>
@@ -67,21 +61,16 @@ function setupTabs(poet) {
     
     tabsContainer.innerHTML = tabsHTML;
     
-    // Set up tab content
     showQuotesTab(poet);
     
-    // Add event listeners to tabs
     document.querySelectorAll('.tab-button').forEach(button => {
         button.addEventListener('click', function() {
-            // Remove active class from all tabs
             document.querySelectorAll('.tab-button').forEach(btn => {
                 btn.classList.remove('active');
             });
             
-            // Add active class to clicked tab
             this.classList.add('active');
             
-            // Show appropriate content
             const tabName = this.getAttribute('data-tab');
             if (tabName === 'quotes') {
                 showQuotesTab(poet);
@@ -95,10 +84,8 @@ function setupTabs(poet) {
 function showQuotesTab(poet) {
     const contentContainer = document.getElementById('tab-content');
     
-    // Create quotes categories
     let quotesHTML = '<div class="quotes-container">';
     
-    // Add category tabs
     quotesHTML += '<div class="category-tabs">';
     const categories = {
         'romantic': 'رومانسية',
@@ -114,7 +101,6 @@ function showQuotesTab(poet) {
     });
     quotesHTML += '</div>';
     
-    // Add quotes content
     quotesHTML += '<div class="quotes-content">';
     Object.keys(categories).forEach((category, index) => {
         const displayStyle = index === 0 ? 'block' : 'none';
@@ -138,33 +124,27 @@ function showQuotesTab(poet) {
         
         quotesHTML += '</div>';
     });
-    quotesHTML += '</div>'; // End quotes-content
-    quotesHTML += '</div>'; // End quotes-container
+    quotesHTML += '</div>';
+    quotesHTML += '</div>';
     
     contentContainer.innerHTML = quotesHTML;
     
-    // Add event listeners to category tabs
     document.querySelectorAll('.category-tab').forEach(tab => {
         tab.addEventListener('click', function() {
-            // Remove active class from all category tabs
             document.querySelectorAll('.category-tab').forEach(t => {
                 t.classList.remove('active');
             });
             
-            // Add active class to clicked tab
             this.classList.add('active');
             
-            // Hide all category content
             document.querySelectorAll('.category-content').forEach(content => {
                 content.style.display = 'none';
             });
             
-            // Show selected category content
             const category = this.getAttribute('data-category');
             document.getElementById(`${category}-quotes`).style.display = 'block';
         });
     });
-    // Add copy/share listeners
     document.querySelectorAll('.copy-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             const text = this.getAttribute('data-quote');
@@ -217,22 +197,18 @@ function showPoemsTab(poet) {
         poemsHTML += '<p class="no-content">لا توجد قصائد متاحة</p>';
     }
     
-    poemsHTML += '</div>'; // End poems-container
+    poemsHTML += '</div>'; 
     
     contentContainer.innerHTML = poemsHTML;
     
-    // Add event listeners to poem items
     document.querySelectorAll('.poem-item').forEach(item => {
         item.addEventListener('click', function() {
-            // Remove active class from all poem items
             document.querySelectorAll('.poem-item').forEach(i => {
                 i.classList.remove('active');
             });
             
-            // Add active class to clicked item
             this.classList.add('active');
             
-            // Show selected poem
             const poemIndex = parseInt(this.getAttribute('data-poem-index'));
             const poem = poet.poems[poemIndex];
             

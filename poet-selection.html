@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ديوان الزمان - اختيار الشاعر</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="fonts/combined-fonts.css">
+</head>
+<body>
+    <header>
+        <h1><a href="index.html">ديوان الزمان</a></h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="poet-selection.html" class="active">الشعراء</a></li>
+                <!-- Add other navigation links if needed -->
+            </ul>
+        </nav>
+    </header>
+
+    <main class="poet-selection-page">
+        <h2>اختر شاعراً</h2>
+        
+        <div class="poets-grid">
+            <div class="poet-card" onclick="location.href='poet-details.html?poet=mahmoud_darwish'">
+                <div class="poet-image">
+                    <img src="images/mahmoud-darwish.jpg" alt="محمود درويش">
+                </div>
+                <div class="poet-info">
+                    <h3>محمود درويش</h3>
+                    <p>شاعر فلسطيني (1941-2008)</p>
+                </div>
+            </div>
+            
+            <div class="poet-card" onclick="location.href='poet-details.html?poet=nizar_qabbani'">
+                <div class="poet-image">
+                    <img src="images/nizar-qabbani.png" alt="نزار قباني">
+                </div>
+                <div class="poet-info">
+                    <h3>نزار قباني</h3>
+                    <p>شاعر سوري (1923-1998)</p>
+                </div>
+            </div>
+            
+            <div class="poet-card" onclick="location.href='poet-details.html?poet=ahmed_shawqi'">
+                <div class="poet-image">
+                    <img src="images/ahmed-shawqi.jpg" alt="أحمد شوقي">
+                </div>
+                <div class="poet-info">
+                    <h3>أحمد شوقي</h3>
+                    <p>شاعر مصري (1868-1932)</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 ديوان الزمان. جميع الحقوق محفوظة.</p>
+    </footer>
+</body>
+</html>

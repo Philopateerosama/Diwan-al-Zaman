@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفاصيل الرواية - ديوان الزمان</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="fonts/combined-fonts.css">
+    <style>
+        .novel-details-layout {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 2.5rem;
+            max-width: 1100px;
+            margin: 2.5rem auto 2rem auto;
+        }
+        .novel-parts-list {
+            background: #fff8f3;
+            border-radius: 16px;
+            box-shadow: 0 2px 12px #0001;
+            border: 1.5px solid #e2cfc3;
+            padding: 1.2rem 1.1rem;
+            min-width: 170px;
+            max-width: 200px;
+            margin-top: 0.5rem;
+            position: sticky;
+            top: 2.5rem;
+            height: fit-content;
+        }
+        .novel-parts-list h4 {
+            color: #a05a2c;
+            font-size: 1.08em;
+            margin-bottom: 1.1em;
+            text-align: center;
+        }
+        .novel-part-btn {
+            display: block;
+            width: 100%;
+            background: #f9f6f2;
+            color: #7c3a1e;
+            border: 1px solid #e2cfc3;
+            border-radius: 8px;
+            padding: 0.7em 0.5em;
+            margin-bottom: 0.7em;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.15s, color 0.15s;
+            text-align: right;
+        }
+        .novel-part-btn.selected, .novel-part-btn:hover {
+            background: #ffe3c7;
+            color: #a05a2c;
+            font-weight: bold;
+        }
+        .novel-details-card {
+            background: #fff8f3;
+            max-width: 700px;
+            min-width: 0;
+            box-shadow: 0 4px 24px #0001, 0 1.5px 8px #7c3a1e22;
+            border-radius: 18px;
+            padding: 2.2rem 2rem 2rem 2rem;
+            border: 1.5px solid #e2cfc3;
+            flex: 1 1 0%;
+        }
+        .novel-details-card h2 {
+            color: #7c3a1e;
+            font-size: 2.1rem;
+            margin-bottom: 0.7em;
+            text-align: center;
+            letter-spacing: 0.5px;
+        }
+        .novel-details-card .novel-desc {
+            font-size: 1.02em;
+            color: #8a5c3b;
+            margin-bottom: 2.2em;
+            text-align: center;
+            opacity: 0.85;
+        }
+        .novel-part {
+            margin-bottom: 2.2em;
+            background: #f9f6f2;
+            border-radius: 12px;
+            box-shadow: 0 1.5px 8px #7c3a1e11;
+            padding: 1.2em 1.1em 1.1em 1.1em;
+            border: 1px solid #e2cfc3;
+        }
+        .novel-part h3 {
+            color: #a05a2c;
+            font-size: 1.15em;
+            margin-bottom: 0.5em;
+        }
+        .novel-part pre {
+            font-size: 0.98em;
+            color: #3d2b1f;
+            background: none;
+            border: none;
+            padding: 0;
+            margin: 0;
+            font-family: inherit;
+            line-height: 2.1;
+            white-space: pre-wrap;
+            word-break: break-word;
+            overflow-wrap: break-word;
+        }
+        @media (max-width: 900px) {
+            .novel-details-layout { flex-direction: column; gap: 1.5rem; }
+            .novel-parts-list { max-width: 100%; min-width: 0; margin: 0 auto 1.2rem auto; position: static; }
+        }
+        @media (max-width: 600px) {
+            .novel-details-card { padding: 1.2rem 0.5rem; }
+            .novel-part pre { font-size: 0.93em; }
+        }
+        .back-btn-floating {
+            position: fixed;
+            left: 2.2vw;
+            bottom: 2.2vw;
+            z-index: 1002;
+            background: #fff8f3;
+            color: #7c3a1e;
+            border: 1.5px solid #e2cfc3;
+            border-radius: 2em;
+            padding: 0.7em 1.5em 0.7em 1.5em;
+            font-size: 1.08em;
+            font-family: inherit;
+            box-shadow: 0 2px 12px #7c3a1e22;
+            cursor: pointer;
+            transition: background 0.18s, color 0.18s, box-shadow 0.18s;
+            font-weight: 500;
+        }
+        .back-btn-floating:hover {
+            background: #ffe3c7;
+            color: #a05a2c;
+            box-shadow: 0 4px 18px #a05a2c33;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><a href="index.html">ديوان الزمان</a></h1>
+    </header>
+    <main class="novel-details-page">
+        <button onclick="window.location.href='novels.html'" class="back-btn-floating">&larr; عودة للروايات</button>
+        <div class="novel-details-layout">
+            <div id="novel-parts-list"></div>
+            <div id="novel-details"></div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2025 ديوان الزمان. جميع الحقوق محفوظة.</p>
+    </footer>
+    <script>
+    function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+    const novelId = getQueryParam('id');
+    const detailsDiv = document.getElementById('novel-details');
+    const partsListDiv = document.getElementById('novel-parts-list');
+    if (novelId === 'inside_corridor' || novelId === 'cafe_story') {
+        const jsonFile = novelId === 'inside_corridor' ? 'data/inside_corridor.json' : 'data/cafe_story.json';
+        fetch(jsonFile)
+            .then(res => res.json())
+            .then(data => {
+                // Build parts list
+                let partsListHtml = `<div class='novel-parts-list'><h4>أجزاء الرواية</h4>`;
+                data.parts.forEach((part, idx) => {
+                    partsListHtml += `<button class='novel-part-btn' data-idx='${idx}'>${part.title}</button>`;
+                });
+                partsListHtml += `</div>`;
+                partsListDiv.innerHTML = partsListHtml;
+                // Show first part by default
+                function renderPart(idx) {
+                    let html = `<div class='novel-details-card'>`;
+                    html += `<h2>${data.name}</h2>`;
+                    html += `<div class='novel-desc'>${data.description}</div>`;
+                    html += `<div class='novel-part'>`;
+                    html += `<h3>${data.parts[idx].title}</h3>`;
+                    html += `<pre>${data.parts[idx].text}</pre>`;
+                    html += `</div></div>`;
+                    detailsDiv.innerHTML = html;
+                }
+                renderPart(0);
+                // Add click events
+                const btns = partsListDiv.querySelectorAll('.novel-part-btn');
+                btns.forEach((btn, idx) => {
+                    btn.addEventListener('click', function() {
+                        btns.forEach(b => b.classList.remove('selected'));
+                        btn.classList.add('selected');
+                        renderPart(idx);
+                    });
+                });
+                // Highlight first by default
+                if (btns[0]) btns[0].classList.add('selected');
+            })
+            .catch(() => {
+                detailsDiv.innerHTML = '<p>تعذر تحميل بيانات الرواية.</p>';
+            });
+    } else {
+        detailsDiv.innerHTML = '<p>الرواية غير موجودة.</p>';
+    }
+    </script>
+</body>
+</html> 

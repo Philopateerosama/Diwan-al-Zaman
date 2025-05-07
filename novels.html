@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ديوان الزمان - تفاصيل الشاعر</title>
+    <title>ديوان الزمان - الروايات</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="fonts/combined-fonts.css">
 </head>
 <body>
     <header>
         <h1><a href="index.html">ديوان الزمان</a></h1>
-        <div id="poet-name" style="text-align:center;font-size:1.5em;margin:10px 0;"></div>
         <div style="position:absolute;left:1.5rem;top:1.5rem;z-index:1000;">
             <label class="theme-switch" title="تبديل الوضع الليلي">
                 <input type="checkbox" id="dark-mode-toggle" style="display:none;">
@@ -19,32 +18,37 @@
             </label>
         </div>
     </header>
-
-    <main class="poet-details-page" style="display:flex;gap:2rem;align-items:flex-start;">
+    <main class="poet-selection-page">
+        <h2>الروايات</h2>
         <a href="javascript:history.back()" class="back-btn-floating">
             <i class="fas fa-arrow-right"></i>
             عودة
         </a>
-        <aside class="poet-info-card">
-            <div id="poet-info">
-                <div class="loading-placeholder">جاري تحميل بيانات الشاعر...</div>
-            </div>
-        </aside>
-        <section class="poet-main-content" style="flex:1;">
-            <div id="poet-content">
-                <div id="tabs" class="tabs-container">
+        <div class="poets-grid">
+            <a class="poet-card" href="novel-details.html?id=inside_corridor" style="text-decoration:none;color:inherit;">
+                <div class="poet-image">
+                    <img src="images/rwaya1.png" alt="داخل أحد الممرات في شركة كبيرة">
                 </div>
-                <div id="tab-content" class="tab-content-container">
+                <div class="poet-info">
+                    <h3>داخل أحد الممرات في شركة كبيرة</h3>
+                    <p>رومانسية تنشأ بين موظفة ومديرها في شركة كبيرة.</p>
                 </div>
-            </div>
-        </section>
+            </a>
+            <a class="poet-card" href="novel-details.html?id=cafe_story" style="text-decoration:none;color:inherit;">
+                <div class="poet-image">
+                    <img src="images/rwaya2.jpg" alt="بداخل الكافية المُفضل ليه!">
+                </div>
+                <div class="poet-info">
+                    <h3>بداخل الكافية المُفضل ليه!</h3>
+                    <p>قصة لقاء غير متوقع بين شابة ولاعب كرة سابق في كافيه، تتحول إلى علاقة أمل وحب.</p>
+                </div>
+            </a>
+        </div>
     </main>
-
     <footer>
         <p>&copy; 2025 ديوان الزمان. جميع الحقوق محفوظة.</p>
+        <a href="https://forms.gle/5i9DMaDu7ckF6U11A" target="_blank" class="evaluation-link">شاركنا رأيك في الموقع🤝🏻📜</a>
     </footer>
-
-    <script src="js/poet-details.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const toggleInput = document.getElementById('dark-mode-toggle');
@@ -69,4 +73,4 @@
         });
     </script>
 </body>
-</html>
+</html> 

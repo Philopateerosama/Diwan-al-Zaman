@@ -37,13 +37,6 @@
                 </button>
             </div>
         </div>
-        <nav>
-            <ul>
-                <li><a href="index.html" class="active">الرئيسية</a></li>
-                <li><a href="poet-selection.html">الشعراء</a></li>
-                <li><a href="about.html">عن الموقع</a></li>
-            </ul>
-        </nav>
     </header>
 
     <main class="home-page">
@@ -51,50 +44,50 @@
             <div class="hero-content">
                 <h2>أهلاً بك في ديوان الزمان</h2>
                 <p>موسوعة شاملة للشعر العربي تضم أجمل القصائد والاقتباسات لكبار الشعراء العرب</p>
-                <a href="poet-selection.html" class="cta-button">استكشف الشعراء</a>
             </div>
         </section>
 
-        <section class="featured-poets">
-            <h2>شعراء مميزون</h2>
-            <div class="poets-grid">
-                <div class="poet-card" onclick="location.href='poet-details.html?poet=mahmoud_darwish'">
-                    <div class="poet-image">
-                        <img src="images/mahmoud-darwish.jpg" alt="محمود درويش">
+        <section class="main-categories">
+            <div class="category-grid">
+                <div class="category-card" onclick="location.href='classical-poetry.html'">
+                    <div class="category-icon">
+                        <i class="fas fa-book-open"></i>
                     </div>
-                    <div class="poet-info">
-                        <h3>محمود درويش</h3>
-                        <p>شاعر فلسطيني (1941-2008)</p>
-                    </div>
-                </div>
-                
-                <div class="poet-card" onclick="location.href='poet-details.html?poet=nizar_qabbani'">
-                    <div class="poet-image">
-                        <img src="images/nizar-qabbani.png" alt="نزار قباني">
-                    </div>
-                    <div class="poet-info">
-                        <h3>نزار قباني</h3>
-                        <p>شاعر سوري (1923-1998)</p>
+                    <div class="category-info">
+                        <h3>الشعر القديم</h3>
+                        <p>استكشف روائع الشعر العربي القديم من العصر الجاهلي حتى العصر العباسي</p>
                     </div>
                 </div>
                 
-                <div class="poet-card" onclick="location.href='poet-details.html?poet=ahmed_shawqi'">
-                    <div class="poet-image">
-                        <img src="images/ahmed-shawqi.jpg" alt="أحمد شوقي">
+                <div class="category-card" onclick="location.href='modern-poetry.html'">
+                    <div class="category-icon">
+                        <i class="fas fa-pen-fancy"></i>
                     </div>
-                    <div class="poet-info">
-                        <h3>أحمد شوقي</h3>
-                        <p>شاعر مصري (1868-1932)</p>
+                    <div class="category-info">
+                        <h3>الشعر المعاصر</h3>
+                        <p>تعرف على إبداعات الشعراء المعاصرين وأحدث القصائد</p>
                     </div>
                 </div>
-            </div>
-        </section>
+                
+                <div class="category-card" onclick="location.href='novels.html'">
+                    <div class="category-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="category-info">
+                        <h3>الروايات</h3>
+                        <p>مجموعة من أجمل الروايات العربية والعالمية</p>
+                    </div>
+                </div>
 
-        <section class="quote-of-day">
-            <h2>اقتباس اليوم</h2>
-            <div class="quote-card featured">
-                <div class="quote-text" id="random-quote">على هذه الأرض ما يستحق الحياة: تردد إبريل، رائحة الخبز عند الفجر، آراء امرأة في الرجال، كتابات أسخيليوس، أول الحب، عشب على حجر، أمهات تقف على خيط ناي، وخوف الغزاة من الذكريات.</div>
-                <div class="quote-author" id="random-quote-author">محمود درويش</div>
+                <div class="category-card" onclick="location.href='about.html'">
+                    <div class="category-icon">
+                        <i class="fas fa-info-circle"></i>
+                    </div>
+                    <div class="category-info">
+                        <h3>عن الموقع</h3>
+                        <p>تعرف على ديوان الزمان وأهدافه</p>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
@@ -106,74 +99,6 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const quotes = [
-                {
-                    text: "نجلسُ مثلَ طقوسِ القهوةِ.. ننتظرُ الضيوفَ الذين لن يأتوا!",
-                    author: "محمود درويش"
-                },
-                {
-                    text: "كلُّ شيءٍ يبدأ من فنجان قهوة.. وينتهي بجرحٍ لا يندمل!",
-                    author: "محمود درويش"
-                },
-                {
-                    text: "نشربُ القهوةَ على مهلٍ.. كأننا نُحصي السنين الضائعة!",
-                    author: "محمود درويش"
-                },
-                {
-                    text: "أحبُّ قهوتَنا البُنيّةَ.. فيها رائحةُ الأرضِ التي غادرناها",
-                    author: "محمود درويش"
-                },
-                {
-                    text: "أحبكِ لأنكِ أنتِ، لا لأنكِ جميلة، ولا لأنكِ طيبة، ولا لأنكِ حلوة، ولا لأنكِ ذكية، أحبكِ لأنكِ أنتِ.",
-                    author: "نزار قباني"
-                },
-                {
-                    text: "وما نيل المطالب بالتمني ولكن تؤخذ الدنيا غلابا",
-                    author: "أحمد شوقي"
-                },
-                {
-                    text: "أحبُّ قهوةَ الصباحِ.. وأحبُّ جنونَ النساءِ",
-                    author: "نزار قباني"
-                },
-                {
-                    text: "وأنسى حينَ أشُمُّ رائحةَ البنِّ.. كلَّ جراحي",
-                    author: "نزار قباني"
-                },
-                {
-                    text: "اسقِني القهوةَ ذاتَ الرائحـةِ الزكيـةْ.. كأنـما هيَ من الجنـةِ العليـا",
-                    author: "أحمد شوقي"
-                },
-                {
-                    text: "يا ساقيَ القهوةَ الصافيـةْ.. هبْها لنا مُرَّةً هانـيـةْ",
-                    author: "أحمد شوقي"
-                },
-                {
-                    text: "أيّتها القهوةُ المُرةُ.. أنتِ كالحبّ، كلما ازددتِ مرارةً ازددتُ عشقاً!",
-                    author: "نزار قباني"
-                },
-                {
-                    text: "أشربُ قهوتي وأكتبُ رسالتي.. وأعلمُ أنَّ الحبَّ لن يصل!",
-                    author: "نزار قباني"
-                },
-                {
-                    text: "القهوةُ.. ما أطيبَها عندَ اللقاء، وما أمرَّها عندَ الفراق!",
-                    author: "أحمد شوقي"
-                },
-                {
-                    text: "يا ساقيَ القهوةَ الصافيـةْ.. هبْها لنا مُرَّةً هانـيـةْ",
-                    author: "أحمد شوقي"
-                },
-            ];
-
-            function displayRandomQuote() {
-                const randomIndex = Math.floor(Math.random() * quotes.length);
-                const quote = quotes[randomIndex];
-                document.getElementById('random-quote').textContent = quote.text;
-                document.getElementById('random-quote-author').textContent = quote.author;
-            }
-
-            displayRandomQuote();
-
             const toggleInput = document.getElementById('dark-mode-toggle');
             const html = document.documentElement;
             const icon = document.getElementById('theme-icon');

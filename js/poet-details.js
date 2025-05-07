@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const poetName = urlParams.get('poet');
     
     if (!poetName) {
-        window.location.href = 'poet-selection.html';
+        window.location.href = 'classical-poetry.html';
         return;
     }
     
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('poet-content').innerHTML = `
                 <div class="error-message">
                     <h2>عذراً، لم يتم العثور على بيانات الشاعر</h2>
-                    <p>يرجى العودة إلى <a href="poet-selection.html">صفحة اختيار الشاعر</a></p>
+                    <p>يرجى العودة إلى <a href="classical-poetry.html">صفحة اختيار الشاعر</a></p>
                 </div>
             `;
         });

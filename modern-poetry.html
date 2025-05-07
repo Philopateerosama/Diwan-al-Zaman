@@ -3,19 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ديوان الزمان - اختيار الشاعر</title>
+    <title>ديوان الزمان - الشعر المعاصر</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="fonts/combined-fonts.css">
 </head>
 <body>
     <header>
         <h1><a href="index.html">ديوان الزمان</a></h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">الرئيسية</a></li>
-                <li><a href="poet-selection.html" class="active">الشعراء</a></li>
-            </ul>
-        </nav>
         <div style="position:absolute;left:1.5rem;top:1.5rem;z-index:1000;">
             <label class="theme-switch" title="تبديل الوضع الليلي">
                 <input type="checkbox" id="dark-mode-toggle" style="display:none;">
@@ -24,45 +18,41 @@
             </label>
         </div>
     </header>
-
     <main class="poet-selection-page">
-        <h2>اختر شاعراً</h2>
-        
+        <h2>الشعراء المعاصرون</h2>
         <div class="poets-grid">
-            <div class="poet-card" onclick="location.href='poet-details.html?poet=mahmoud_darwish'">
+            <div class="poet-card" onclick="location.href='poet-details.html?poet=omar_hassan'">
                 <div class="poet-image">
-                    <img src="images/mahmoud-darwish.jpg" alt="محمود درويش">
+                    <img src="images/amr-hassan.jpg" alt="عمر حسن">
                 </div>
                 <div class="poet-info">
-                    <h3>محمود درويش</h3>
-                    <p>شاعر فلسطيني (1941-2008)</p>
+                    <h3>عمر حسن</h3>
+                    <p>شاعر مصري معاصر</p>
                 </div>
             </div>
-            
-            <div class="poet-card" onclick="location.href='poet-details.html?poet=nizar_qabbani'">
+            <div class="poet-card" onclick="location.href='poet-details.html?poet=hisham_elgakh'">
                 <div class="poet-image">
-                    <img src="images/nizar-qabbani.png" alt="نزار قباني">
+                    <img src="images/hisham-el-gakh.jpg" alt="هشام الجخ">
                 </div>
                 <div class="poet-info">
-                    <h3>نزار قباني</h3>
-                    <p>شاعر سوري (1923-1998)</p>
+                    <h3>هشام الجخ</h3>
+                    <p>شاعر مصري معاصر</p>
                 </div>
             </div>
-            
-            <div class="poet-card" onclick="location.href='poet-details.html?poet=ahmed_shawqi'">
+            <div class="poet-card" onclick="location.href='poet-details.html?poet=fares_kotb'">
                 <div class="poet-image">
-                    <img src="images/ahmed-shawqi.jpg" alt="أحمد شوقي">
+                    <img src="images/Fars.png" alt="فارس قطب">
                 </div>
                 <div class="poet-info">
-                    <h3>أحمد شوقي</h3>
-                    <p>شاعر مصري (1868-1932)</p>
+                    <h3>فارس قطب</h3>
+                    <p>شاعر مصري معاصر</p>
                 </div>
             </div>
         </div>
     </main>
-
     <footer>
         <p>&copy; 2025 ديوان الزمان. جميع الحقوق محفوظة.</p>
+        <a href="https://forms.gle/5i9DMaDu7ckF6U11A" target="_blank" class="evaluation-link">شاركنا رأيك في الموقع🤝🏻📜</a>
     </footer>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -88,4 +78,4 @@
         });
     </script>
 </body>
-</html>
+</html> 

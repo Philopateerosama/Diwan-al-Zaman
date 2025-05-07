@@ -10,13 +10,6 @@
 <body>
     <header>
         <h1><a href="index.html">ديوان الزمان</a></h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">الرئيسية</a></li>
-                <li><a href="poet-selection.html">الشعراء</a></li>
-                <li><a href="about.html" class="active">عن الموقع</a></li>
-            </ul>
-        </nav>
         <div style="position:absolute;left:1.5rem;top:1.5rem;z-index:1000;">
             <label class="theme-switch" title="تبديل الوضع الليلي">
                 <input type="checkbox" id="dark-mode-toggle" style="display:none;">
@@ -26,6 +19,10 @@
         </div>
     </header>
     <main style="max-width: 800px; margin: 3rem auto; background: #fff; border-radius: 16px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); padding: 2.5rem;">
+        <a href="javascript:history.back()" class="back-btn-floating">
+            <i class="fas fa-arrow-right"></i>
+            عودة
+        </a>
         <h2 style="text-align:center; color: var(--primary-dark); margin-bottom: 2rem;">عن ديوان الزمان</h2>
         <p style="font-size:1.2rem; line-height:2; margin-bottom:2rem;">
             <b>ديوان الزمان</b> هو موسوعة إلكترونية متخصصة في الشعر العربي، تهدف إلى جمع أجمل القصائد والاقتباسات لكبار الشعراء العرب من مختلف العصور، وتقديمها للقراء بشكل عصري وجذاب وسهل التصفح.
@@ -52,6 +49,7 @@
     </main>
     <footer>
         <p>&copy; 2025 ديوان الزمان. جميع الحقوق محفوظة.</p>
+        <a href="https://forms.gle/5i9DMaDu7ckF6U11A" target="_blank" class="evaluation-link">شاركنا رأيك في الموقع🤝🏻📜</a>
     </footer>
     <script>
         document.addEventListener('DOMContentLoaded', function() {

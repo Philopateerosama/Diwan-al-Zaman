@@ -73,9 +73,28 @@
         .novel-details-card .novel-desc {
             font-size: 1.02em;
             color: #8a5c3b;
-            margin-bottom: 2.2em;
+            margin-bottom: 1em;
             text-align: center;
             opacity: 0.85;
+        }
+        .social-links {
+            text-align: center;
+            margin-bottom: 2.2em;
+        }
+        .social-links a {
+            display: inline-block;
+            padding: 0.5em 1em;
+            background: #f9f6f2;
+            color: #7c3a1e;
+            text-decoration: none;
+            border-radius: 8px;
+            border: 1px solid #e2cfc3;
+            transition: background 0.15s, color 0.15s;
+            margin: 0 0.5em;
+        }
+        .social-links a:hover {
+            background: #ffe3c7;
+            color: #a05a2c;
         }
         .novel-part {
             margin-bottom: 2.2em;
@@ -157,8 +176,28 @@
     const novelId = getQueryParam('id');
     const detailsDiv = document.getElementById('novel-details');
     const partsListDiv = document.getElementById('novel-parts-list');
-    if (novelId === 'inside_corridor' || novelId === 'cafe_story') {
-        const jsonFile = novelId === 'inside_corridor' ? 'data/inside_corridor.json' : 'data/cafe_story.json';
+    if (novelId === 'inside_corridor' 
+    || novelId === 'cafe_story' 
+    || novelId === 'ahlam_moalaka' 
+    || novelId === 'akher_raasa' 
+    || novelId === '3_khwatem' 
+    || novelId === 'hekayat_min_dakhel_masaha_nafsee'
+    || novelId === 'hob_ben_azro3_el_ekhtaboot') {
+        const jsonFile = novelId === 'inside_corridor' 
+            ? 'data/inside_corridor.json' 
+            : novelId === 'cafe_story' 
+            ? 'data/cafe_story.json'
+            : novelId === 'ahlam_moalaka'
+            ? 'data/ahlam_moalaka.json'
+            : novelId === 'akher_raasa'
+            ? 'data/akher_raasa.json'
+            : novelId === '3_khwatem'
+            ? 'data/3_khwatem.json'
+            : novelId === 'hekayat_min_dakhel_masaha_nafsee'
+            ? 'data/hekayat_min_dakhel_masaha_nafsee.json'
+            : novelId === 'hob_ben_azro3_el_ekhtaboot'
+            ? 'data/hob_ben_azro3_el_ekhtaboot.json'
+            : null;
         fetch(jsonFile)
             .then(res => res.json())
             .then(data => {
@@ -174,6 +213,11 @@
                     let html = `<div class='novel-details-card'>`;
                     html += `<h2>${data.name}</h2>`;
                     html += `<div class='novel-desc'>${data.description}</div>`;
+                    if (data.facebook) {
+                        html += `<div class='social-links'>`;
+                        html += `<a href="${data.facebook}" target="_blank">صفحة الفيسبوك</a>`;
+                        html += `</div>`;
+                    }
                     html += `<div class='novel-part'>`;
                     html += `<h3>${data.parts[idx].title}</h3>`;
                     html += `<pre>${data.parts[idx].text}</pre>`;
@@ -201,4 +245,4 @@
     }
     </script>
 </body>
-</html> 
+</html>
